@@ -1,30 +1,45 @@
 package com.allianz.example.database.entity;
 
+import com.allianz.example.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.Set;
 
-@Table(name = "users")
 @Entity
 @Data
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    private Long id;
+@Table(name = "users")
+public class UserEntity extends BaseEntity {
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column
+    private String username;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private String email;
 
-    @Column(unique = true, nullable = false, length = 100)
-    private String name;
+    @Column
+    private String photoLink;
+    @Column
+    private boolean isEnable;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "users_movies",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id")
-    )
-    private Set<MovieEntity> movies;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JoinColumn(name = "role_id", nullable = false)
+    private Set<RoleEntity> roles;
+    public UserEntity() {
+        isEnable = false;
+    }
+
 }

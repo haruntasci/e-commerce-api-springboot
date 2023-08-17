@@ -53,15 +53,16 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
     }
 
 
+
     @Transactional
     public ProductDTO saveWithCategory(ProductRequestDTO productRequestDTO) {
 
         Set<CategoryRequestDTO> categoryRequestDTOS = new HashSet<>(new ArrayList<>(productRequestDTO.getCategoryList()));
-        productRequestDTO.setCategoryList(null);
+        //productRequestDTO.setCategoryList(null);
 
 
         ProductEntity productEntity = productMapper.requestDTOToEntity(productRequestDTO);
-        //ProductEntity savedProductEntity = productEntityRepository.save(productEntity);
+        ProductEntity savedProductEntity = productEntityRepository.save(productEntity);
 
 
         Set<CategoryEntity> associatedCategories = new HashSet<>();
@@ -71,8 +72,8 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
             associatedCategories.add(categoryEntity);
         }
 
-        productEntity.setCategoryList(associatedCategories);
-        productEntityRepository.save(productEntity);
+        savedProductEntity.setCategoryList(associatedCategories);
+        productEntityRepository.save(savedProductEntity);
 
         return productMapper.entityToDTO(productEntity);
     }

@@ -9,5 +9,5 @@ import java.util.Set;
 @Data
 public class CategoryRequestDTO extends BaseDTO {
     private String name;
-//    private Set<ProductRequestDTO> productList = new HashSet<>();
+    //private Set<ProductRequestDTO> productList = new HashSet<>();
 }

@@ -44,11 +44,11 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
         }
         dto.setSellPrice(entity.getSellPrice());
         dto.setBuyPrice(entity.getBuyPrice());
-        if (entity.getCategoryList() != null) {
+
             Set<CategoryDTO> categoryDTOS =
                     new HashSet<>(new ArrayList<>(categoryMapper.entityListToDTOList(new ArrayList<>(entity.getCategoryList()))));
             dto.setCategoryList(categoryDTOS);
-        }
+
 
         return dto;
     }
@@ -69,12 +69,12 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
         }
         entity.setSellPrice(dto.getSellPrice());
         entity.setBuyPrice(dto.getBuyPrice());
-        if (dto.getCategoryList() != null) {
+
 
             Set<CategoryEntity> categoryDTOS =
                     new HashSet<>(new ArrayList<>(categoryMapper.dtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
             entity.setCategoryList(categoryDTOS);
-        }
+
 
         return entity;
     }
@@ -115,12 +115,12 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
         }
         entity.setSellPrice(dto.getSellPrice());
         entity.setBuyPrice(dto.getBuyPrice());
-        if (dto.getCategoryList() != null) {
+
 
             Set<CategoryEntity> categoryDTOS =
                     new HashSet<>(new ArrayList<>(categoryMapper.requestDtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
             entity.setCategoryList(categoryDTOS);
-        }
+
         return entity;
     }
 

@@ -33,12 +33,14 @@ public class ProductController extends BaseController<
     }
 
     @PostMapping("add-others")
-    public ResponseEntity<ProductDTO> addOtherRelations(@RequestBody ProductRequestDTO productRequestDTO){
+    public ResponseEntity<ProductDTO> addOtherRelations(@RequestBody ProductRequestDTO productRequestDTO) {
         return new ResponseEntity<>(productService.saveWithCategory(productRequestDTO), HttpStatus.OK);
     }
 
     @GetMapping("get-all-products")
-    public ResponseEntity<List<ProductDTO>> getAllProducts(){
-        return new ResponseEntity<>(productService.getAll(),HttpStatus.OK);
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
+
+
 }
