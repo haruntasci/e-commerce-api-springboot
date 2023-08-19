@@ -33,10 +33,7 @@ public class ProductEntity extends BaseEntity {
     private ColorEnum color;
 
     @Column
-    private BigDecimal sellPrice;
-
-    @Column
-    private BigDecimal buyPrice;
+    private BigDecimal price;
 
     @Column
     private Integer quantity;

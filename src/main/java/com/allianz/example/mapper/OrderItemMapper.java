@@ -29,7 +29,7 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
         dto.setUpdatedDate(entity.getUpdatedDate());
         dto.setProduct(productMapper.entityToDTO(entity.getProduct()));
         dto.setQuantity(entity.getQuantity());
-        dto.setSellPrice(entity.getSellPrice());
+        dto.setOrderPrice(entity.getOrderPrice());
 
 
         return dto;
@@ -44,7 +44,7 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
         entity.setUpdatedDate(dto.getUpdatedDate());
         entity.setProduct(productMapper.dtoToEntity(dto.getProduct()));
         entity.setQuantity(dto.getQuantity());
-        entity.setSellPrice(dto.getSellPrice());
+        entity.setOrderPrice(dto.getOrderPrice());
 
         return entity;
     }
@@ -80,7 +80,7 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
         entity.setUpdatedDate(dto.getUpdatedDate());
         entity.setProduct(productMapper.requestDTOToEntity(dto.getProduct()));
         entity.setQuantity(dto.getQuantity());
-        entity.setSellPrice(dto.getSellPrice());
+        entity.setOrderPrice(dto.getOrderPrice());
         return entity;
     }
 
@@ -101,7 +101,7 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
     public OrderItemEntity requestDtoToExistEntity(OrderItemEntity entity, OrderItemRequestDTO orderItemRequestDTO) {
         entity.setProduct(productMapper.requestDTOToEntity(orderItemRequestDTO.getProduct()));
         entity.setQuantity(orderItemRequestDTO.getQuantity());
-        entity.setSellPrice(orderItemRequestDTO.getSellPrice());
+        entity.setOrderPrice(orderItemRequestDTO.getOrderPrice());
         return entity;
     }
 

@@ -25,14 +25,10 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-
-    @Autowired
-    private UserEntityRepository userRepo;
     @Autowired
     private JWTFilter filter;
     @Autowired
     private SecurityService uds;
-
 
 
     private static final String[] AUTH_WHITELIST = {
@@ -46,12 +42,35 @@ public class SecurityConfiguration {
             "/api/public/**",
             "/api/public/authenticate",
             "/actuator/*",
-            "/swagger-ui/**"
+            "/swagger-ui/**",
+            "/auth/**",
+            "/auth",
+            "/tax/**",
+            "/tax"
     };
-    private static final String[] GENERAL_WHITELIST = {
-
-            "/tax/*",
-            "/tax",
+    private static final String[] CUSTOMER_WHITELIST = {
+            "/person/**",
+            "/person",
+            "/address/**",
+            "/address",
+            "/customer/**",
+            "/customer",
+            "/order-item/**",
+            "/order-item",
+            "/order/**",
+            "/order",
+            "/bill/**",
+            "/bill"
+    };
+    private static final String[] SELLER_WHITELIST = {
+            "/seller/**",
+            "/seller",
+            "/product/**", //çift yıldız daha kapsamlı
+            "/product",
+            "/category/**",
+            "/category",
+            "/order/**",
+            "/order"
     };
 
 
@@ -72,7 +91,8 @@ public class SecurityConfiguration {
                 }).and()
                 .authorizeHttpRequests()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                .requestMatchers(GENERAL_WHITELIST).hasAnyRole("admin","user")
+                .requestMatchers(CUSTOMER_WHITELIST).hasAnyRole("user")
+                .requestMatchers(SELLER_WHITELIST).hasAnyRole("admin")
 
 
                 .and()

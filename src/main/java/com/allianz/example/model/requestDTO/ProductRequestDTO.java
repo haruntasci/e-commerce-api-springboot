@@ -13,10 +13,9 @@ public class ProductRequestDTO extends BaseDTO {
     private String name;
     private String code;
     private ColorEnum color;
-    private BigDecimal sellPrice;
-    private BigDecimal buyPrice;
+    private BigDecimal price;
     private Integer quantity;
-    private Set<CategoryRequestDTO> categoryList;
-    private TaxRequestDTO tax;
+//    private Set<CategoryRequestDTO> categoryList;
+//    private TaxRequestDTO tax;
 
 }

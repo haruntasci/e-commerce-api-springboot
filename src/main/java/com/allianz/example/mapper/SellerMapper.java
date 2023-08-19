@@ -29,6 +29,7 @@ public class SellerMapper implements IBaseMapper<SellerDTO, SellerEntity, Seller
         dto.setShopName(entity.getShopName());
         dto.setTaxNumber(entity.getTaxNumber());
         dto.setTaxOffice(entity.getTaxOffice());
+        dto.setEmail(entity.getEmail());
 
         return dto;
     }
@@ -46,6 +47,7 @@ public class SellerMapper implements IBaseMapper<SellerDTO, SellerEntity, Seller
         entity.setShopName(dto.getShopName());
         entity.setTaxNumber(dto.getTaxNumber());
         entity.setTaxOffice(dto.getTaxOffice());
+        entity.setEmail(dto.getEmail());
 
         return entity;
     }
@@ -83,6 +85,7 @@ public class SellerMapper implements IBaseMapper<SellerDTO, SellerEntity, Seller
         entity.setShopName(dto.getShopName());
         entity.setTaxNumber(dto.getTaxNumber());
         entity.setTaxOffice(dto.getTaxOffice());
+        entity.setEmail(dto.getEmail());
 
         return entity;
     }

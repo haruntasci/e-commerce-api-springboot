@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "user_entity")
 public class UserEntity extends BaseEntity {
 
     @Column
@@ -36,7 +36,11 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JoinColumn(name = "role_id", nullable = false)
+//    @JoinColumn(name = "role_id", nullable = false)
+    @JoinTable(name="user_roles",
+               joinColumns = {@JoinColumn(name="user_id")},
+               inverseJoinColumns = {@JoinColumn(name="role_id", nullable = false)}
+    )
     private Set<RoleEntity> roles;
     public UserEntity() {
         isEnable = false;

@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface RoleEntityRepository extends BaseRepository<RoleEntity> {
     Optional<RoleEntity> findByName(String name);
+
 }

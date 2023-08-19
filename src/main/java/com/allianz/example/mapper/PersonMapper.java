@@ -6,15 +6,21 @@ import com.allianz.example.model.PersonDTO;
 import com.allianz.example.model.requestDTO.PageDTO;
 import com.allianz.example.model.requestDTO.PersonRequestDTO;
 import com.allianz.example.util.IBaseMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Component
+@Lazy
 public class PersonMapper implements IBaseMapper<PersonDTO, PersonEntity, PersonRequestDTO> {
 
+    @Autowired
+    AddressMapper addressMapper;
 
     @Override
     public PersonDTO entityToDTO(PersonEntity entity) {
@@ -28,6 +34,10 @@ public class PersonMapper implements IBaseMapper<PersonDTO, PersonEntity, Person
         dto.setId(entity.getId());
         dto.setCreationDate(entity.getCreationDate());
         dto.setUpdatedDate(entity.getUpdatedDate());
+        dto.setMail(entity.getMail());
+        if(entity.getAddressEntityList()!=null){
+            dto.setAddressList(addressMapper.entityListToDTOList(entity.getAddressEntityList()));
+        }
 
         return dto;
     }
@@ -44,6 +54,7 @@ public class PersonMapper implements IBaseMapper<PersonDTO, PersonEntity, Person
         entity.setId(dto.getId());
         entity.setCreationDate(dto.getCreationDate());
         entity.setUpdatedDate(dto.getUpdatedDate());
+        entity.setMail(dto.getMail());
 
         return entity;
 
@@ -79,6 +90,7 @@ public class PersonMapper implements IBaseMapper<PersonDTO, PersonEntity, Person
         entity.setId(dto.getId());
         entity.setCreationDate(dto.getCreationDate());
         entity.setUpdatedDate(dto.getUpdatedDate());
+        entity.setMail(dto.getMail());
 
         return entity;
     }

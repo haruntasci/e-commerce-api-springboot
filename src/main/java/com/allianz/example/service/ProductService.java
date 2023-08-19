@@ -2,23 +2,22 @@ package com.allianz.example.service;
 
 import com.allianz.example.database.entity.CategoryEntity;
 import com.allianz.example.database.entity.ProductEntity;
+import com.allianz.example.database.entity.TaxEntity;
+import com.allianz.example.database.repository.CategoryEntityRepository;
 import com.allianz.example.database.repository.ProductEntityRepository;
+import com.allianz.example.database.repository.TaxEntityRepository;
 import com.allianz.example.mapper.CategoryMapper;
 import com.allianz.example.mapper.ProductMapper;
-import com.allianz.example.model.CategoryDTO;
-import com.allianz.example.model.PersonDTO;
 import com.allianz.example.model.ProductDTO;
-import com.allianz.example.model.requestDTO.CategoryRequestDTO;
+import com.allianz.example.model.requestDTO.ProductCategoryRequestDTO;
 import com.allianz.example.model.requestDTO.ProductRequestDTO;
 import com.allianz.example.util.BaseService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 @Service
 public class ProductService extends BaseService<ProductEntity, ProductDTO, ProductRequestDTO,
@@ -26,6 +25,12 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
 
     @Autowired
     ProductEntityRepository productEntityRepository;
+
+    @Autowired
+    CategoryEntityRepository categoryEntityRepository;
+
+    @Autowired
+    TaxEntityRepository taxEntityRepository;
 
     @Autowired
     ProductMapper productMapper;
@@ -46,35 +51,49 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
         return this.productEntityRepository;
     }
 
-
-    public List<ProductDTO> getAll(){
-        List<ProductEntity> productEntities = productEntityRepository.findAll();
-        return productMapper.entityListToDTOList(productEntities);
-    }
-
-
-
     @Transactional
-    public ProductDTO saveWithCategory(ProductRequestDTO productRequestDTO) {
+    public ProductDTO addCategoriesToProduct(ProductCategoryRequestDTO productCategoryRequest, UUID productUUID) {
 
-        Set<CategoryRequestDTO> categoryRequestDTOS = new HashSet<>(new ArrayList<>(productRequestDTO.getCategoryList()));
-        //productRequestDTO.setCategoryList(null);
-
-
-        ProductEntity productEntity = productMapper.requestDTOToEntity(productRequestDTO);
-        ProductEntity savedProductEntity = productEntityRepository.save(productEntity);
-
-
-        Set<CategoryEntity> associatedCategories = new HashSet<>();
-        for (CategoryRequestDTO categoryRequestDTO : categoryRequestDTOS) {
-            CategoryDTO categoryDTO = categoryService.getByUUID(categoryRequestDTO.getUuid());
-            CategoryEntity categoryEntity = categoryMapper.dtoToEntity(categoryDTO);
-            associatedCategories.add(categoryEntity);
+        ProductEntity product = productEntityRepository.findByUuid(productUUID).orElse(null);
+        if (product != null) {
+            Set<CategoryEntity> categoryEntities = product.getCategoryList();
+            if (categoryEntities == null) {
+                categoryEntities = new HashSet<>();
+            }
+            for (UUID categoryUUID : productCategoryRequest.getCategoryUUIDList()) {
+                CategoryEntity category = categoryEntityRepository.findByUuid(categoryUUID).orElse(null);
+                if (category != null) {
+                    categoryEntities.add(category);
+                } else {
+                    return null;
+                }
+            }
+            product.setCategoryList(categoryEntities);
+            ProductEntity savedProduct = productEntityRepository.save(product);
+            return productMapper.entityToDTO(savedProduct);
+        } else {
+            return null;
         }
 
-        savedProductEntity.setCategoryList(associatedCategories);
-        productEntityRepository.save(savedProductEntity);
-
-        return productMapper.entityToDTO(productEntity);
     }
+
+    @Transactional
+    public ProductDTO addTaxToProduct(UUID taxUUID, UUID productUUID) {
+        ProductEntity product = productEntityRepository.findByUuid(productUUID).orElse(null);
+        if (product != null) {
+            TaxEntity tax = taxEntityRepository.findByUuid(taxUUID).orElse(null);
+            if (tax != null) {
+                product.setTax(tax);
+                ProductEntity savedProduct = productEntityRepository.save(product);
+                return productMapper.entityToDTO(savedProduct);
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+
+
 }

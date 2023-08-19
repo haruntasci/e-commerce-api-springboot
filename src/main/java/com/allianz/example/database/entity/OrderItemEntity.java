@@ -20,6 +20,6 @@ public class OrderItemEntity extends BaseEntity {
     private Integer quantity;
 
     @Column
-    private BigDecimal sellPrice;
+    private BigDecimal orderPrice;
 
 }

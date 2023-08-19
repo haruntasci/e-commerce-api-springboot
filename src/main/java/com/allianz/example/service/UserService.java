@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,23 +24,19 @@ public class UserService {
 
 
     public void saveUserByRole(UserEntity user) {
-
-        //dinamik
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Set<RoleEntity> roles = new HashSet<>();
+        Set<RoleEntity> roleList = new HashSet<>();
         for (RoleEntity entity : user.getRoles()) {
-            RoleEntity role = roleRepository.save(entity);
-            roles.add(role);
+            Optional<RoleEntity> existedRole = roleRepository.findByName(entity.getName());
+            if(existedRole.isPresent()){
+                roleList.add(existedRole.get());
+            }else{
+                RoleEntity role = roleRepository.save(entity);
+                roleList.add(role);
+            }
         }
-        user.setRoles(roles);
+        user.setRoles(roleList);
         userRepository.save(user);
-
-//        //dinamik
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        Set<RoleEntity> roles = new HashSet<>();
-//        roles.add(roleRepository.findByName("user").get());
-//        user.setRoles(roles);
-//        userRepository.save(user);
     }
 
 

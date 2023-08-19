@@ -5,6 +5,7 @@ import com.allianz.example.model.AddressDTO;
 import com.allianz.example.model.requestDTO.AddressRequestDTO;
 import com.allianz.example.model.requestDTO.PageDTO;
 import com.allianz.example.util.IBaseMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.function.Function;
 
 @Component
+@Lazy
 public class AddressMapper implements IBaseMapper<AddressDTO, AddressEntity, AddressRequestDTO> {
     @Override
     public AddressDTO entityToDTO(AddressEntity entity) {
@@ -27,7 +29,6 @@ public class AddressMapper implements IBaseMapper<AddressDTO, AddressEntity, Add
         addressDTO.setAddress(entity.getAddress());
         addressDTO.setTitle(entity.getTitle());
         addressDTO.setUpdatedDate(entity.getUpdatedDate());
-
 
         return addressDTO;
     }
@@ -61,6 +62,7 @@ public class AddressMapper implements IBaseMapper<AddressDTO, AddressEntity, Add
         entity.setTitle(dto.getTitle());
         entity.setCreationDate(dto.getCreationDate());
         entity.setUpdatedDate(dto.getUpdatedDate());
+        entity.setAddress(dto.getAddress());
 
         return entity;
     }

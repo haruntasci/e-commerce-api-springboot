@@ -17,12 +17,12 @@ public class OrderEntity extends BaseEntity {
     private CustomerEntity customer;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatusEnum orderStatus;
+    private OrderStatusEnum orderStatus = OrderStatusEnum.WAITING;
 
     @OneToMany
     private List<OrderItemEntity> orderItemList;
 
     @Column
-    private BigDecimal totalSellPrice;
+    private BigDecimal totalAmount;
 
 }

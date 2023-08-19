@@ -9,5 +9,5 @@ import java.math.BigDecimal;
 public class OrderItemRequestDTO extends BaseDTO {
     private ProductRequestDTO product;
     private Integer quantity;
-    private BigDecimal sellPrice;
+    private BigDecimal orderPrice;
 }

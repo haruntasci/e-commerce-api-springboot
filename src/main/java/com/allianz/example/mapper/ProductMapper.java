@@ -42,12 +42,15 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
 
             dto.setTax(taxMapper.entityToDTO(entity.getTax()));
         }
-        dto.setSellPrice(entity.getSellPrice());
-        dto.setBuyPrice(entity.getBuyPrice());
 
+        dto.setPrice(entity.getPrice());
+
+        if(entity.getCategoryList()!=null){
             Set<CategoryDTO> categoryDTOS =
                     new HashSet<>(new ArrayList<>(categoryMapper.entityListToDTOList(new ArrayList<>(entity.getCategoryList()))));
             dto.setCategoryList(categoryDTOS);
+        }
+
 
 
         return dto;
@@ -67,13 +70,14 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
         if (dto.getTax() != null) {
             entity.setTax(taxMapper.dtoToEntity(dto.getTax()));
         }
-        entity.setSellPrice(dto.getSellPrice());
-        entity.setBuyPrice(dto.getBuyPrice());
+        entity.setPrice(dto.getPrice());
 
+            if(dto.getCategoryList()!=null){
+                Set<CategoryEntity> categoryDTOS =
+                        new HashSet<>(new ArrayList<>(categoryMapper.dtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
+                entity.setCategoryList(categoryDTOS);
+            }
 
-            Set<CategoryEntity> categoryDTOS =
-                    new HashSet<>(new ArrayList<>(categoryMapper.dtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
-            entity.setCategoryList(categoryDTOS);
 
 
         return entity;
@@ -102,24 +106,21 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
     @Override
     public ProductEntity requestDTOToEntity(ProductRequestDTO dto) {
         ProductEntity entity = new ProductEntity();
-        entity.setId(dto.getId());
-        entity.setUuid(dto.getUuid());
-        entity.setCreationDate(dto.getCreationDate());
-        entity.setUpdatedDate(dto.getUpdatedDate());
         entity.setName(dto.getName());
         entity.setCode(dto.getCode());
         entity.setQuantity(dto.getQuantity());
         entity.setColor(dto.getColor());
-        if (dto.getTax() != null) {
-            entity.setTax(taxMapper.requestDTOToEntity(dto.getTax()));
-        }
-        entity.setSellPrice(dto.getSellPrice());
-        entity.setBuyPrice(dto.getBuyPrice());
+//        if (dto.getTax() != null) {
+//            entity.setTax(taxMapper.requestDTOToEntity(dto.getTax()));
+//        }
+        entity.setPrice(dto.getPrice());
 
+//        if(dto.getCategoryList()!=null){
+//            Set<CategoryEntity> categoryDTOS =
+//                    new HashSet<>(new ArrayList<>(categoryMapper.requestDtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
+//            entity.setCategoryList(categoryDTOS);
+//        }
 
-            Set<CategoryEntity> categoryDTOS =
-                    new HashSet<>(new ArrayList<>(categoryMapper.requestDtoListTOEntityList(new ArrayList<>(dto.getCategoryList()))));
-            entity.setCategoryList(categoryDTOS);
 
         return entity;
     }
@@ -131,15 +132,14 @@ public class ProductMapper implements IBaseMapper<ProductDTO, ProductEntity, Pro
 
     @Override
     public ProductEntity requestDtoToExistEntity(ProductEntity entity, ProductRequestDTO productRequestDTO) {
-        Set<CategoryEntity> categoryEntitySet = new HashSet<>(categoryMapper.requestDtoListTOEntityList(new ArrayList<>(productRequestDTO.getCategoryList())));
-        entity.setCategoryList(categoryEntitySet);
-        entity.setTax(taxMapper.requestDTOToEntity(productRequestDTO.getTax()));
+//        Set<CategoryEntity> categoryEntitySet = new HashSet<>(categoryMapper.requestDtoListTOEntityList(new ArrayList<>(productRequestDTO.getCategoryList())));
+//        entity.setCategoryList(categoryEntitySet);
+//        entity.setTax(taxMapper.requestDTOToEntity(productRequestDTO.getTax()));
         entity.setColor(productRequestDTO.getColor());
         entity.setCode(productRequestDTO.getCode());
         entity.setName(productRequestDTO.getName());
         entity.setQuantity(productRequestDTO.getQuantity());
-        entity.setBuyPrice(productRequestDTO.getBuyPrice());
-        entity.setSellPrice(productRequestDTO.getSellPrice());
+        entity.setPrice(productRequestDTO.getPrice());
         return entity;
     }
 

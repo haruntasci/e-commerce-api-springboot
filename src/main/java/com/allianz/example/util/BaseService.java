@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ public abstract class BaseService<
 
     protected abstract Repository getRepository();
 
+    @Transactional
     public DTO save(RequestDTO requestDTO) {
         Entity entity = getMapper().requestDTOToEntity(requestDTO);
         getRepository().save(entity);
@@ -46,6 +48,7 @@ public abstract class BaseService<
         Page<Entity> entityPage = getRepository().findAll(pageable);
         return getMapper().pageEntityToPageDTO(entityPage);
     }
+    @Transactional
 
     public DTO update(UUID uuid, RequestDTO requestDTO) {
         Entity entity = getRepository().findByUuid(uuid).orElse(null);
@@ -67,6 +70,7 @@ public abstract class BaseService<
         }
     }
 
+    @Transactional
     public Boolean deleteByUUID(UUID uuid) {
         Entity entity = getRepository().findByUuid(uuid).orElse(null);
         if (entity != null) {
