@@ -38,7 +38,7 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
         dto.setCustomer(customerMapper.entityToDTO(entity.getCustomer()));
         dto.setOrderStatus(entity.getOrderStatus());
         dto.setOrderItemList(orderItemMapper.entityListToDTOList(entity.getOrderItemList()));
-        dto.setTotalSellPrice(entity.getTotalSellPrice());
+        dto.setTotalAmount(entity.getTotalAmount());
 
         return dto;
 
@@ -55,7 +55,7 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
         entity.setCustomer(customerMapper.dtoToEntity(dto.getCustomer()));
         entity.setOrderStatus(dto.getOrderStatus());
         entity.setOrderItemList(orderItemMapper.dtoListTOEntityList(dto.getOrderItemList()));
-        entity.setTotalSellPrice(dto.getTotalSellPrice());
+        entity.setTotalAmount(dto.getTotalAmount());
         return entity;
     }
 
@@ -72,13 +72,6 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
     @Override
     public OrderEntity requestDTOToEntity(OrderRequestDTO dto) {
         OrderEntity entity = new OrderEntity();
-        entity.setId(dto.getId());
-        entity.setUuid(dto.getUuid());
-        entity.setCreationDate(dto.getCreationDate());
-        entity.setUpdatedDate(dto.getUpdatedDate());
-        entity.setOrderStatus(dto.getOrderStatus());
-        entity.setOrderItemList(orderItemMapper.requestDtoListTOEntityList(dto.getOrderItemList()));
-        entity.setTotalSellPrice(dto.getTotalSellPrice());
         return entity;
     }
 
@@ -93,10 +86,10 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
 
     @Override
     public OrderEntity requestDtoToExistEntity(OrderEntity entity, OrderRequestDTO orderRequestDTO) {
-        entity.setCustomer(customerMapper.requestDTOToEntity(orderRequestDTO.getCustomer()));
-        entity.setOrderItemList(orderItemMapper.requestDtoListTOEntityList(orderRequestDTO.getOrderItemList()));
-        entity.setOrderStatus(orderRequestDTO.getOrderStatus());
-        entity.setTotalSellPrice(orderRequestDTO.getTotalSellPrice());
+//        entity.setCustomer(customerMapper.requestDTOToEntity(orderRequestDTO.getCustomer()));
+//        entity.setOrderItemList(orderItemMapper.requestDtoListTOEntityList(orderRequestDTO.getOrderItemList()));
+//        entity.setOrderStatus(orderRequestDTO.getOrderStatus());
+//        entity.setTotalAmount(orderRequestDTO.getTotalAmount());
         return entity;
     }
 

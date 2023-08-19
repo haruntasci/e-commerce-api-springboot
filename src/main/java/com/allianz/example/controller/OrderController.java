@@ -11,10 +11,7 @@ import com.allianz.example.util.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -37,7 +34,8 @@ public class OrderController extends BaseController<
     }
 
     @PutMapping("/change-order-status/{uuid}")
-    public ResponseEntity<OrderDTO> changeOrderStatus(@RequestBody OrderStatusRequestDTO orderStatusRequest, UUID uuid) {
+    public ResponseEntity<OrderDTO> changeOrderStatus(@RequestBody OrderStatusRequestDTO orderStatusRequest,
+                                                      @PathVariable UUID uuid) {
         OrderDTO order = orderService.changeOrderStatus(orderStatusRequest, uuid);
         if (order != null) {
             return new ResponseEntity<>(order, HttpStatus.OK);

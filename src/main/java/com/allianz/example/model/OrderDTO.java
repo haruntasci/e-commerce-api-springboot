@@ -15,5 +15,5 @@ public class OrderDTO extends BaseDTO {
     private CustomerDTO customer;
     private OrderStatusEnum orderStatus;
     private List<OrderItemDTO> orderItemList;
-    private BigDecimal totalSellPrice;
+    private BigDecimal totalAmount;
 }

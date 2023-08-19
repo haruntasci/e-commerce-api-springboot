@@ -6,14 +6,15 @@ import com.allianz.example.util.BaseDTO;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class CustomerRequestDTO extends BaseDTO {
-    private PersonDTO person;
+    private UUID personUUID;
     private Boolean isCorporate;
     private String companyName;
     private String taxNumber;
     private String taxOffice;
-    private List<OrderRequestDTO> orderList;
+    //private List<OrderRequestDTO> orderList;
 
 }

@@ -28,10 +28,10 @@ public class BillEntity extends BaseEntity {
     private BigDecimal taxAmount;
 
     @Column
-    private BigDecimal totalSellNetPrice;
+    private BigDecimal totalAmount;
 
     @Column
-    private BigDecimal totalSellPrice;
+    private BigDecimal taxFreeAmount;
 
     @OneToOne
     private OrderEntity order;

@@ -57,8 +57,6 @@ public class SecurityConfiguration {
             "/customer",
             "/order-item/**",
             "/order-item",
-            "/order/**",
-            "/order",
             "/bill/**",
             "/bill"
     };
@@ -68,9 +66,13 @@ public class SecurityConfiguration {
             "/product/**", //çift yıldız daha kapsamlı
             "/product",
             "/category/**",
-            "/category",
+            "/category"
+
+    };
+    private static final String[] COMMON_WHITELIST = {
             "/order/**",
             "/order"
+
     };
 
 
@@ -91,6 +93,7 @@ public class SecurityConfiguration {
                 }).and()
                 .authorizeHttpRequests()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
+                .requestMatchers(COMMON_WHITELIST).hasAnyRole("user","admin")
                 .requestMatchers(CUSTOMER_WHITELIST).hasAnyRole("user")
                 .requestMatchers(SELLER_WHITELIST).hasAnyRole("admin")
 

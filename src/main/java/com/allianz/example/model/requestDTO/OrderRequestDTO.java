@@ -6,12 +6,12 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class OrderRequestDTO extends BaseDTO {
 
-    private CustomerRequestDTO customer;
-    private OrderStatusEnum orderStatus;
-    private List<OrderItemRequestDTO> orderItemList;
-    private BigDecimal totalSellPrice;
+    private UUID customerUUID;
+    private List<UUID> orderItemUUIDList;
+
 }

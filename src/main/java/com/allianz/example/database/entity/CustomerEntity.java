@@ -11,7 +11,7 @@ import java.util.List;
 @Table
 public class CustomerEntity extends BaseEntity {
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private PersonEntity person;
 
     @Column

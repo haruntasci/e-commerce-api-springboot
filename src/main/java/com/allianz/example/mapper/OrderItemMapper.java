@@ -78,9 +78,7 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
         entity.setUuid(dto.getUuid());
         entity.setCreationDate(dto.getCreationDate());
         entity.setUpdatedDate(dto.getUpdatedDate());
-        entity.setProduct(productMapper.requestDTOToEntity(dto.getProduct()));
         entity.setQuantity(dto.getQuantity());
-        entity.setOrderPrice(dto.getOrderPrice());
         return entity;
     }
 
@@ -99,9 +97,9 @@ public class OrderItemMapper implements IBaseMapper<OrderItemDTO, OrderItemEntit
 
     @Override
     public OrderItemEntity requestDtoToExistEntity(OrderItemEntity entity, OrderItemRequestDTO orderItemRequestDTO) {
-        entity.setProduct(productMapper.requestDTOToEntity(orderItemRequestDTO.getProduct()));
+//        entity.setProduct(productMapper.requestDTOToEntity(orderItemRequestDTO.getProduct()));
         entity.setQuantity(orderItemRequestDTO.getQuantity());
-        entity.setOrderPrice(orderItemRequestDTO.getOrderPrice());
+//        entity.setOrderPrice(orderItemRequestDTO.getOrderPrice());
         return entity;
     }
 
