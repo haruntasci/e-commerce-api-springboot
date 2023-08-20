@@ -1,6 +1,7 @@
 package com.allianz.example.database.entity;
 
 import com.allianz.example.util.dbutil.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

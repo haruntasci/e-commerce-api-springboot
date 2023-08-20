@@ -25,10 +25,10 @@ public class BillMapper implements IBaseMapper<BillDTO, BillEntity, BillRequestD
         BillDTO dto = new BillDTO();
         dto.setBillDate(entity.getBillDate());
         dto.setBillNo(entity.getBillNo());
-        dto.setTaxRate(entity.getTaxRate());
+//        dto.setTaxRate(entity.getTaxRate());
         dto.setTaxAmount(entity.getTaxAmount());
-        dto.setTotalSellPrice(entity.getTotalSellPrice());
-        dto.setTotalSellNetPrice(entity.getTotalSellNetPrice());
+        dto.setTotalAmount(entity.getTotalAmount());
+        dto.setTaxFreeAmount(entity.getTaxFreeAmount());
         dto.setOrder(orderMapper.entityToDTO(entity.getOrder()));
 
         dto.setId(entity.getId());
@@ -43,10 +43,10 @@ public class BillMapper implements IBaseMapper<BillDTO, BillEntity, BillRequestD
         BillEntity entity = new BillEntity();
         entity.setBillDate(dto.getBillDate());
         entity.setBillNo(dto.getBillNo());
-        entity.setTaxRate(dto.getTaxRate());
+//        entity.setTaxRate(dto.getTaxRate());
         entity.setTaxAmount(dto.getTaxAmount());
-        entity.setTotalSellPrice(dto.getTotalSellPrice());
-        entity.setTotalSellNetPrice(dto.getTotalSellNetPrice());
+        entity.setTotalAmount(dto.getTotalAmount());
+        entity.setTaxAmount(dto.getTaxFreeAmount());
         entity.setOrder(orderMapper.dtoToEntity(dto.getOrder()));
 
         entity.setId(dto.getId());
@@ -81,13 +81,13 @@ public class BillMapper implements IBaseMapper<BillDTO, BillEntity, BillRequestD
     @Override
     public BillEntity requestDTOToEntity(BillRequestDTO dto) {
         BillEntity entity = new BillEntity();
-        entity.setBillDate(dto.getBillDate());
+//        entity.setBillDate(dto.getBillDate());
         entity.setBillNo(dto.getBillNo());
-        entity.setTaxRate(dto.getTaxRate());
-        entity.setTaxAmount(dto.getTaxAmount());
-        entity.setTotalSellPrice(dto.getTotalSellPrice());
-        entity.setTotalSellNetPrice(dto.getTotalSellNetPrice());
-        entity.setOrder(orderMapper.requestDTOToEntity(dto.getOrder()));
+//        entity.setTaxRate(dto.getTaxRate());
+//        entity.setTaxAmount(dto.getTaxAmount());
+//        entity.setTaxFreeAmount(dto.getTaxFreeAmount());
+//        entity.setTotalAmount(dto.getTotalAmount());
+//        entity.setOrder(orderMapper.requestDTOToEntity(dto.getOrder()));
 
         entity.setId(dto.getId());
         entity.setUuid(dto.getUuid());
@@ -103,13 +103,13 @@ public class BillMapper implements IBaseMapper<BillDTO, BillEntity, BillRequestD
 
     @Override
     public BillEntity requestDtoToExistEntity(BillEntity entity, BillRequestDTO billRequestDTO) {
-        entity.setOrder(orderMapper.requestDTOToEntity(billRequestDTO.getOrder()));
+//        entity.setOrder(orderMapper.requestDTOToEntity(billRequestDTO.getOrder()));
         entity.setBillNo(billRequestDTO.getBillNo());
-        entity.setBillDate(billRequestDTO.getBillDate());
-        entity.setTaxAmount(billRequestDTO.getTaxAmount());
-        entity.setTaxRate(billRequestDTO.getTaxRate());
-        entity.setTotalSellNetPrice(billRequestDTO.getTotalSellNetPrice());
-        entity.setTotalSellPrice(billRequestDTO.getTotalSellPrice());
+//        entity.setBillDate(billRequestDTO.getBillDate());
+//        entity.setTaxAmount(billRequestDTO.getTaxAmount());
+//        entity.setTaxRate(billRequestDTO.getTaxRate());
+//        entity.setTotalAmount(billRequestDTO.getTotalAmount());
+//        entity.setTaxFreeAmount(billRequestDTO.getTaxFreeAmount());
         return entity;
     }
 

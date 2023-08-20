@@ -5,14 +5,14 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 public class BillRequestDTO extends BaseDTO {
     private String billNo;
-    private LocalDateTime billDate;
-    private BigDecimal taxRate;
-    private BigDecimal taxAmount;
-    private BigDecimal totalSellNetPrice;
-    private BigDecimal totalSellPrice;
-    private OrderRequestDTO order;
+//    private BigDecimal taxRate;
+//    private BigDecimal taxAmount;
+//    private BigDecimal taxFreeAmount;
+//    private BigDecimal totalAmount;
+    private UUID orderUUID;
 }

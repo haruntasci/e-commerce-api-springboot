@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public class BillDTO extends BaseDTO {
     private String billNo;
     private LocalDateTime billDate;
-    private BigDecimal taxRate;
+//    private BigDecimal taxRate;
     private BigDecimal taxAmount;
-    private BigDecimal totalSellNetPrice;
-    private BigDecimal totalSellPrice;
+    private BigDecimal taxFreeAmount;
+    private BigDecimal totalAmount;
     private OrderDTO order;
 }

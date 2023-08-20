@@ -34,7 +34,6 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
         dto.setUuid(entity.getUuid());
         dto.setCreationDate(entity.getCreationDate());
         dto.setUpdatedDate(entity.getUpdatedDate());
-
         dto.setCustomer(customerMapper.entityToDTO(entity.getCustomer()));
         dto.setOrderStatus(entity.getOrderStatus());
         dto.setOrderItemList(orderItemMapper.entityListToDTOList(entity.getOrderItemList()));
@@ -61,7 +60,11 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
 
     @Override
     public List<OrderDTO> entityListToDTOList(List<OrderEntity> orderEntities) {
-        return null;
+        List<OrderDTO> orderDTOList = new ArrayList<>();
+//        for (OrderEntity order : orderEntities) {
+//            orderDTOList.add(entityToDTO(order));
+//        }
+        return orderDTOList;
     }
 
     @Override
@@ -78,7 +81,7 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
     @Override
     public List<OrderEntity> requestDtoListTOEntityList(List<OrderRequestDTO> orderRequestDTOS) {
         List<OrderEntity> orderEntityList = new ArrayList<>();
-        for(OrderRequestDTO orderRequestDTO : orderRequestDTOS){
+        for (OrderRequestDTO orderRequestDTO : orderRequestDTOS) {
             orderEntityList.add(requestDTOToEntity(orderRequestDTO));
         }
         return orderEntityList;

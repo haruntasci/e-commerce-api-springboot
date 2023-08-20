@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -34,13 +35,14 @@ public class OrderController extends BaseController<
     }
 
     @PutMapping("/change-order-status/{uuid}")
-    public ResponseEntity<OrderDTO> changeOrderStatus(@RequestBody OrderStatusRequestDTO orderStatusRequest,
-                                                      @PathVariable UUID uuid) {
-        OrderDTO order = orderService.changeOrderStatus(orderStatusRequest, uuid);
-        if (order != null) {
-            return new ResponseEntity<>(order, HttpStatus.OK);
+    public ResponseEntity<String> changeOrderStatus(@RequestBody OrderStatusRequestDTO orderStatusRequest,
+                                                    @PathVariable UUID uuid) {
+        String orderStatusMessage = orderService.changeOrderStatus(orderStatusRequest, uuid);
+        if (orderStatusMessage != null) {
+            return new ResponseEntity<>(orderStatusMessage, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
 }

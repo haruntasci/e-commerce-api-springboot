@@ -1,8 +1,6 @@
 package com.allianz.example.service;
 
-import com.allianz.example.database.entity.CategoryEntity;
-import com.allianz.example.database.entity.ProductEntity;
-import com.allianz.example.database.entity.TaxEntity;
+import com.allianz.example.database.entity.*;
 import com.allianz.example.database.repository.CategoryEntityRepository;
 import com.allianz.example.database.repository.ProductEntityRepository;
 import com.allianz.example.database.repository.TaxEntityRepository;
@@ -94,6 +92,13 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
         }
     }
 
+    public void updateProductQuantity(OrderEntity order) {
+        for (OrderItemEntity orderItem : order.getOrderItemList()) {
+            ProductEntity product = orderItem.getProduct();
+            product.setQuantity(product.getQuantity() - orderItem.getQuantity());
+            productEntityRepository.save(product);
+        }
+    }
 
 
 }

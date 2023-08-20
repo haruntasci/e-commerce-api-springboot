@@ -1,14 +1,14 @@
 package com.allianz.example.database.entity;
 
 import com.allianz.example.util.dbutil.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -19,10 +19,10 @@ public class BillEntity extends BaseEntity {
     private String billNo;
 
     @Column
-    private LocalDateTime billDate;
+    private LocalDateTime billDate = LocalDateTime.now();
 
-    @Column
-    private BigDecimal taxRate;
+//    @Column
+//    private BigDecimal taxRate;
 
     @Column
     private BigDecimal taxAmount;
@@ -35,8 +35,6 @@ public class BillEntity extends BaseEntity {
 
     @OneToOne
     private OrderEntity order;
-
-
 
 
 
