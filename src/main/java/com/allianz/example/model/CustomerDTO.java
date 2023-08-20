@@ -2,6 +2,7 @@ package com.allianz.example.model;
 
 
 import com.allianz.example.util.BaseDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +14,5 @@ public class CustomerDTO extends BaseDTO {
     private String companyName;
     private String taxNumber;
     private String taxOffice;
-    //private List<OrderDTO> orderList;
-
+//    private List<OrderDTO> orderList;
 }

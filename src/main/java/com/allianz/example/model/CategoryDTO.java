@@ -1,6 +1,7 @@
 package com.allianz.example.model;
 
 import com.allianz.example.util.BaseDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.HashSet;

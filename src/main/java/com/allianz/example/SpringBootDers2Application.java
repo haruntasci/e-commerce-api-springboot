@@ -1,7 +1,9 @@
 package com.allianz.example;
 
 import com.allianz.example.database.entity.CategoryEntity;
+import com.allianz.example.database.entity.CustomerEntity;
 import com.allianz.example.database.entity.ProductEntity;
+import com.allianz.example.database.repository.CustomerEntityRepository;
 import com.allianz.example.database.repository.ProductEntityRepository;
 import com.allianz.example.model.ProductDTO;
 import com.allianz.example.service.CategoryService;
@@ -27,6 +29,7 @@ public class SpringBootDers2Application implements CommandLineRunner {
 
     @Autowired
     CategoryService categoryService;
+
 
     public static void main(String[] args) {
 
@@ -55,6 +58,7 @@ public class SpringBootDers2Application implements CommandLineRunner {
 //        productEntityRepository.save(product);
 
        // productDTOS.stream().forEach(productEntity -> System.out.println(productEntity));
+
 
     }
 }
