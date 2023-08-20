@@ -4,6 +4,8 @@ import com.allianz.example.model.enums.OrderStatusEnum;
 import com.allianz.example.util.dbutil.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;

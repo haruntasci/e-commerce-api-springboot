@@ -13,6 +13,6 @@ public class CustomerDTO extends BaseDTO {
     private String companyName;
     private String taxNumber;
     private String taxOffice;
-    private List<OrderDTO> orderList;
+    //private List<OrderDTO> orderList;
 
 }

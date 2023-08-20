@@ -34,9 +34,14 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
         dto.setUuid(entity.getUuid());
         dto.setCreationDate(entity.getCreationDate());
         dto.setUpdatedDate(entity.getUpdatedDate());
-        dto.setCustomer(customerMapper.entityToDTO(entity.getCustomer()));
+        if (entity.getCustomer() != null) {
+            dto.setCustomer(customerMapper.entityToDTO(entity.getCustomer()));
+        }
         dto.setOrderStatus(entity.getOrderStatus());
-        dto.setOrderItemList(orderItemMapper.entityListToDTOList(entity.getOrderItemList()));
+        if (entity.getOrderItemList() != null) {
+            dto.setOrderItemList(orderItemMapper.entityListToDTOList(entity.getOrderItemList()));
+
+        }
         dto.setTotalAmount(entity.getTotalAmount());
 
         return dto;
@@ -51,9 +56,14 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
         entity.setUuid(dto.getUuid());
         entity.setCreationDate(dto.getCreationDate());
         entity.setUpdatedDate(dto.getUpdatedDate());
-        entity.setCustomer(customerMapper.dtoToEntity(dto.getCustomer()));
+        if (dto.getCustomer() != null) {
+            entity.setCustomer(customerMapper.dtoToEntity(dto.getCustomer()));
+        }
         entity.setOrderStatus(dto.getOrderStatus());
-        entity.setOrderItemList(orderItemMapper.dtoListTOEntityList(dto.getOrderItemList()));
+        if (dto.getOrderItemList() != null) {
+            entity.setOrderItemList(orderItemMapper.dtoListTOEntityList(dto.getOrderItemList()));
+
+        }
         entity.setTotalAmount(dto.getTotalAmount());
         return entity;
     }
@@ -61,9 +71,9 @@ public class OrderMapper implements IBaseMapper<OrderDTO, OrderEntity, OrderRequ
     @Override
     public List<OrderDTO> entityListToDTOList(List<OrderEntity> orderEntities) {
         List<OrderDTO> orderDTOList = new ArrayList<>();
-//        for (OrderEntity order : orderEntities) {
-//            orderDTOList.add(entityToDTO(order));
-//        }
+        for (OrderEntity order : orderEntities) {
+            orderDTOList.add(entityToDTO(order));
+        }
         return orderDTOList;
     }
 

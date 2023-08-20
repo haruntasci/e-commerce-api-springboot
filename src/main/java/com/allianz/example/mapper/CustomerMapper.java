@@ -36,10 +36,12 @@ public class CustomerMapper implements IBaseMapper<CustomerDTO, CustomerEntity, 
         dto.setTaxNumber(entity.getTaxNumber());
         dto.setTaxOffice(entity.getTaxOffice());
         dto.setIsCorporate(entity.getIsCorporate());
-        dto.setPerson(personMapper.entityToDTO(entity.getPerson()));
-        if(entity.getOrderList()!=null){
-            dto.setOrderList(orderMapper.entityListToDTOList(entity.getOrderList()));
+        if(entity.getPerson()!=null){
+            dto.setPerson(personMapper.entityToDTO(entity.getPerson()));
         }
+//        if(entity.getOrderList()!=null){
+//            dto.setOrderList(orderMapper.entityListToDTOList(entity.getOrderList()));
+//        }
 
 
         return dto;
@@ -56,8 +58,12 @@ public class CustomerMapper implements IBaseMapper<CustomerDTO, CustomerEntity, 
         entity.setTaxNumber(dto.getTaxNumber());
         entity.setTaxOffice(dto.getTaxOffice());
         entity.setIsCorporate(dto.getIsCorporate());
-        entity.setPerson(personMapper.dtoToEntity(dto.getPerson()));
-        entity.setOrderList(orderMapper.dtoListTOEntityList(dto.getOrderList()));
+        if(entity.getPerson()!=null){
+            entity.setPerson(personMapper.dtoToEntity(dto.getPerson()));
+        }
+//        if(entity.getOrderList()!=null){
+//            entity.setOrderList(orderMapper.dtoListTOEntityList(dto.getOrderList()));
+//        }
 
         return entity;
     }
