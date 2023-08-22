@@ -6,6 +6,7 @@ import com.allianz.example.database.entity.OrderItemEntity;
 import com.allianz.example.database.repository.CustomerEntityRepository;
 import com.allianz.example.database.repository.OrderEntityRepository;
 import com.allianz.example.database.repository.OrderItemEntityRepository;
+import com.allianz.example.database.specification.OrderSpecification;
 import com.allianz.example.mapper.OrderMapper;
 import com.allianz.example.model.OrderDTO;
 import com.allianz.example.model.enums.OrderStatusEnum;
@@ -30,7 +31,7 @@ import java.util.UUID;
 
 @Service
 public class OrderService extends BaseService<OrderEntity, OrderDTO, OrderRequestDTO,
-        OrderMapper, OrderEntityRepository> {
+        OrderMapper, OrderEntityRepository, OrderSpecification> {
     private static final String APPROVED_MESSAGE = "Order approved and bill created";
 
 
@@ -60,6 +61,11 @@ public class OrderService extends BaseService<OrderEntity, OrderDTO, OrderReques
     @Override
     protected OrderEntityRepository getRepository() {
         return this.orderEntityRepository;
+    }
+
+    @Override
+    protected OrderSpecification getSpecification() {
+        return null;
     }
 
     public String changeOrderStatus(OrderStatusRequestDTO orderStatusRequest, UUID orderUUID) {

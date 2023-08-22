@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.ProductEntity;
 import com.allianz.example.database.repository.ProductEntityRepository;
+import com.allianz.example.database.specification.ProductSpecification;
 import com.allianz.example.mapper.ProductMapper;
 import com.allianz.example.model.ProductDTO;
 import com.allianz.example.model.requestDTO.ProductCategoryRequestDTO;
@@ -24,6 +25,7 @@ public class ProductController extends BaseController<
         ProductRequestDTO,
         ProductMapper,
         ProductEntityRepository,
+        ProductSpecification,
         ProductService> {
 
     @Autowired

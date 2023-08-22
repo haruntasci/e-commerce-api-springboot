@@ -15,7 +15,8 @@ public abstract class BaseController<
         RequestDto extends BaseDTO,
         Mapper extends IBaseMapper<DTO, Entity, RequestDto>,
         Repository extends BaseRepository<Entity>,
-        Service extends BaseService<Entity, DTO, RequestDto, Mapper, Repository>> {
+        Specification extends BaseSpecification<Entity>,
+        Service extends BaseService<Entity, DTO, RequestDto, Mapper, Repository, Specification>> {
 
     protected abstract Service getService();
 

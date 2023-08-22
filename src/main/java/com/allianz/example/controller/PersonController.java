@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.PersonEntity;
 import com.allianz.example.database.repository.PersonEntityRepository;
+import com.allianz.example.database.specification.PersonSpecification;
 import com.allianz.example.mapper.PersonMapper;
 import com.allianz.example.model.PersonDTO;
 import com.allianz.example.model.requestDTO.PersonAddressRequestDTO;
@@ -23,6 +24,7 @@ public class PersonController extends BaseController<
         PersonRequestDTO,
         PersonMapper,
         PersonEntityRepository,
+        PersonSpecification,
         PersonService> {
 
     @Autowired

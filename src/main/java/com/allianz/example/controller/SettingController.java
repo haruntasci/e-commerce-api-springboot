@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.SettingEntity;
 import com.allianz.example.database.repository.SettingEntityRepository;
+import com.allianz.example.database.specification.SettingSpecification;
 import com.allianz.example.mapper.SettingMapper;
 import com.allianz.example.model.SettingDTO;
 import com.allianz.example.model.requestDTO.SettingRequestDTO;
@@ -19,6 +20,7 @@ public class SettingController extends BaseController<
         SettingRequestDTO,
         SettingMapper,
         SettingEntityRepository,
+        SettingSpecification,
         SettingService> {
 
     @Autowired

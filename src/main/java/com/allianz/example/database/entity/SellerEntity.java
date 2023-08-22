@@ -25,15 +25,4 @@ public class SellerEntity extends BaseEntity {
     private String taxNumber;
     @Column
     private String taxOffice;
-
-
-
-
-
-
-
-
-
-
-
 }

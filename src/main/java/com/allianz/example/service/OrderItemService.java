@@ -5,6 +5,7 @@ import com.allianz.example.database.entity.OrderItemEntity;
 import com.allianz.example.database.entity.ProductEntity;
 import com.allianz.example.database.repository.OrderItemEntityRepository;
 import com.allianz.example.database.repository.ProductEntityRepository;
+import com.allianz.example.database.specification.OrderItemSpecification;
 import com.allianz.example.mapper.OrderItemMapper;
 import com.allianz.example.model.OrderItemDTO;
 import com.allianz.example.model.requestDTO.OrderItemRequestDTO;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderItemService extends BaseService<OrderItemEntity, OrderItemDTO, OrderItemRequestDTO,
-        OrderItemMapper, OrderItemEntityRepository> {
+        OrderItemMapper, OrderItemEntityRepository, OrderItemSpecification> {
 
     @Autowired
     OrderItemEntityRepository orderItemEntityRepository;
@@ -33,6 +34,11 @@ public class OrderItemService extends BaseService<OrderItemEntity, OrderItemDTO,
     @Override
     protected OrderItemEntityRepository getRepository() {
         return this.orderItemEntityRepository;
+    }
+
+    @Override
+    protected OrderItemSpecification getSpecification() {
+        return null;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.allianz.example.database.entity.*;
 import com.allianz.example.database.repository.CategoryEntityRepository;
 import com.allianz.example.database.repository.ProductEntityRepository;
 import com.allianz.example.database.repository.TaxEntityRepository;
+import com.allianz.example.database.specification.ProductSpecification;
 import com.allianz.example.mapper.CategoryMapper;
 import com.allianz.example.mapper.ProductMapper;
 import com.allianz.example.model.ProductDTO;
@@ -19,10 +20,13 @@ import java.util.*;
 
 @Service
 public class ProductService extends BaseService<ProductEntity, ProductDTO, ProductRequestDTO,
-        ProductMapper, ProductEntityRepository> {
+        ProductMapper, ProductEntityRepository, ProductSpecification> {
 
     @Autowired
     ProductEntityRepository productEntityRepository;
+
+    @Autowired
+    ProductSpecification productSpecification;
 
     @Autowired
     CategoryEntityRepository categoryEntityRepository;
@@ -47,6 +51,11 @@ public class ProductService extends BaseService<ProductEntity, ProductDTO, Produ
     @Override
     protected ProductEntityRepository getRepository() {
         return this.productEntityRepository;
+    }
+
+    @Override
+    protected ProductSpecification getSpecification() {
+        return productSpecification;
     }
 
     @Transactional

@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.AddressEntity;
 import com.allianz.example.database.repository.AddressEntityRepository;
+import com.allianz.example.database.specification.AddressSpecification;
 import com.allianz.example.mapper.AddressMapper;
 import com.allianz.example.model.AddressDTO;
 import com.allianz.example.model.requestDTO.AddressRequestDTO;
@@ -19,6 +20,7 @@ public class AddressController extends BaseController<
         AddressRequestDTO,
         AddressMapper,
         AddressEntityRepository,
+        AddressSpecification,
         AddressService> {
 
     @Autowired

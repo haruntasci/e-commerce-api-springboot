@@ -47,6 +47,7 @@ public class SecurityConfiguration {
             "/auth",
             "/tax/**",
             "/tax"
+
     };
     private static final String[] CUSTOMER_WHITELIST = {
             "/person/**",
@@ -72,7 +73,6 @@ public class SecurityConfiguration {
     private static final String[] COMMON_WHITELIST = {
             "/order/**",
             "/order"
-
     };
 
 
@@ -93,13 +93,10 @@ public class SecurityConfiguration {
                 }).and()
                 .authorizeHttpRequests()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                .requestMatchers(COMMON_WHITELIST).hasAnyRole("user","admin")
-                .requestMatchers(CUSTOMER_WHITELIST).hasAnyRole("user")
-                .requestMatchers(SELLER_WHITELIST).hasAnyRole("admin")
-
-
+                .requestMatchers(COMMON_WHITELIST).hasAnyRole("customer","seller")
+                .requestMatchers(CUSTOMER_WHITELIST).hasAnyRole("customer")
+                .requestMatchers(SELLER_WHITELIST).hasAnyRole("seller")
                 .and()
-
                 .userDetailsService(uds)
                 .exceptionHandling()
                 .authenticationEntryPoint(

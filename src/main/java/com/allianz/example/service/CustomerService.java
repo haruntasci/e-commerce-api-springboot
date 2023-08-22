@@ -4,6 +4,7 @@ import com.allianz.example.database.entity.CustomerEntity;
 import com.allianz.example.database.entity.PersonEntity;
 import com.allianz.example.database.repository.CustomerEntityRepository;
 import com.allianz.example.database.repository.PersonEntityRepository;
+import com.allianz.example.database.specification.CustomerSpecification;
 import com.allianz.example.mapper.CustomerMapper;
 import com.allianz.example.model.CustomerDTO;
 import com.allianz.example.model.requestDTO.CustomerRequestDTO;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService extends BaseService<CustomerEntity, CustomerDTO, CustomerRequestDTO,
-        CustomerMapper, CustomerEntityRepository> {
+        CustomerMapper, CustomerEntityRepository, CustomerSpecification> {
 
     @Autowired
     CustomerEntityRepository customerEntityRepository;
@@ -24,6 +25,9 @@ public class CustomerService extends BaseService<CustomerEntity, CustomerDTO, Cu
     @Autowired
     CustomerMapper customerMapper;
 
+    @Autowired
+    CustomerSpecification customerSpecification;
+
     @Override
     protected CustomerMapper getMapper() {
         return this.customerMapper;
@@ -32,6 +36,11 @@ public class CustomerService extends BaseService<CustomerEntity, CustomerDTO, Cu
     @Override
     protected CustomerEntityRepository getRepository() {
         return this.customerEntityRepository;
+    }
+
+    @Override
+    protected CustomerSpecification getSpecification() {
+        return null;
     }
 
     @Override

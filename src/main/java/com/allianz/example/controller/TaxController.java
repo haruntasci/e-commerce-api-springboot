@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.TaxEntity;
 import com.allianz.example.database.repository.TaxEntityRepository;
+import com.allianz.example.database.specification.TaxSpecification;
 import com.allianz.example.mapper.TaxMapper;
 import com.allianz.example.model.TaxDTO;
 import com.allianz.example.model.requestDTO.TaxRequestDTO;
@@ -19,6 +20,7 @@ public class TaxController extends BaseController<
         TaxRequestDTO,
         TaxMapper,
         TaxEntityRepository,
+        TaxSpecification,
         TaxService>   {
 
     @Autowired

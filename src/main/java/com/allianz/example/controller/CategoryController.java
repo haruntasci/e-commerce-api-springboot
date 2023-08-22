@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.CategoryEntity;
 import com.allianz.example.database.repository.CategoryEntityRepository;
+import com.allianz.example.database.specification.CategorySpecification;
 import com.allianz.example.mapper.CategoryMapper;
 import com.allianz.example.model.CategoryDTO;
 import com.allianz.example.model.requestDTO.CategoryRequestDTO;
@@ -19,6 +20,7 @@ public class CategoryController extends BaseController<
         CategoryRequestDTO,
         CategoryMapper,
         CategoryEntityRepository,
+        CategorySpecification,
         CategoryService> {
 
     @Autowired

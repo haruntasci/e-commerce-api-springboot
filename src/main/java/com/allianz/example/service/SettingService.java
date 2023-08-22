@@ -2,6 +2,7 @@ package com.allianz.example.service;
 
 import com.allianz.example.database.entity.SettingEntity;
 import com.allianz.example.database.repository.SettingEntityRepository;
+import com.allianz.example.database.specification.SettingSpecification;
 import com.allianz.example.mapper.SettingMapper;
 import com.allianz.example.model.SettingDTO;
 import com.allianz.example.model.requestDTO.SettingRequestDTO;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SettingService extends BaseService<SettingEntity, SettingDTO, SettingRequestDTO,
-        SettingMapper, SettingEntityRepository> {
+        SettingMapper, SettingEntityRepository, SettingSpecification> {
 
     @Autowired
     SettingEntityRepository settingEntityRepository;
@@ -28,5 +29,10 @@ public class SettingService extends BaseService<SettingEntity, SettingDTO, Setti
     @Override
     protected SettingEntityRepository getRepository() {
         return this.settingEntityRepository;
+    }
+
+    @Override
+    protected SettingSpecification getSpecification() {
+        return null;
     }
 }

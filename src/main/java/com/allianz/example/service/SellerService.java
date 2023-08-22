@@ -2,6 +2,7 @@ package com.allianz.example.service;
 
 import com.allianz.example.database.entity.SellerEntity;
 import com.allianz.example.database.repository.SellerEntityRepository;
+import com.allianz.example.database.specification.SellerSpecification;
 import com.allianz.example.mapper.SellerMapper;
 import com.allianz.example.model.SellerDTO;
 import com.allianz.example.model.requestDTO.SellerRequestDTO;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SellerService extends BaseService<SellerEntity, SellerDTO, SellerRequestDTO, SellerMapper, SellerEntityRepository> {
+public class SellerService extends BaseService<SellerEntity, SellerDTO, SellerRequestDTO, SellerMapper, SellerEntityRepository, SellerSpecification> {
     @Autowired
     SellerEntityRepository sellerEntityRepository;
 
@@ -25,5 +26,10 @@ public class SellerService extends BaseService<SellerEntity, SellerDTO, SellerRe
     @Override
     protected SellerEntityRepository getRepository() {
         return this.sellerEntityRepository;
+    }
+
+    @Override
+    protected SellerSpecification getSpecification() {
+        return null;
     }
 }

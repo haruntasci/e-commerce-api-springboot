@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.OrderItemEntity;
 import com.allianz.example.database.repository.OrderItemEntityRepository;
+import com.allianz.example.database.specification.OrderItemSpecification;
 import com.allianz.example.mapper.OrderItemMapper;
 import com.allianz.example.model.OrderItemDTO;
 import com.allianz.example.model.requestDTO.OrderItemRequestDTO;
@@ -19,6 +20,7 @@ public class OrderItemController extends BaseController<
         OrderItemRequestDTO,
         OrderItemMapper,
         OrderItemEntityRepository,
+        OrderItemSpecification,
         OrderItemService> {
 
     @Autowired

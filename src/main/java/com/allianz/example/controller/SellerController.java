@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.SellerEntity;
 import com.allianz.example.database.repository.SellerEntityRepository;
+import com.allianz.example.database.specification.SellerSpecification;
 import com.allianz.example.mapper.SellerMapper;
 import com.allianz.example.model.SellerDTO;
 import com.allianz.example.model.requestDTO.SellerRequestDTO;
@@ -19,6 +20,7 @@ public class SellerController extends BaseController<
         SellerRequestDTO,
         SellerMapper,
         SellerEntityRepository,
+        SellerSpecification,
         SellerService> {
 
     @Autowired

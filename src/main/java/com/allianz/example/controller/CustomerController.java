@@ -2,6 +2,7 @@ package com.allianz.example.controller;
 
 import com.allianz.example.database.entity.CustomerEntity;
 import com.allianz.example.database.repository.CustomerEntityRepository;
+import com.allianz.example.database.specification.CustomerSpecification;
 import com.allianz.example.mapper.CustomerMapper;
 import com.allianz.example.model.CustomerDTO;
 import com.allianz.example.model.requestDTO.CustomerRequestDTO;
@@ -19,6 +20,7 @@ public class CustomerController extends BaseController<
         CustomerRequestDTO,
         CustomerMapper,
         CustomerEntityRepository,
+        CustomerSpecification,
         CustomerService> {
 
     @Autowired

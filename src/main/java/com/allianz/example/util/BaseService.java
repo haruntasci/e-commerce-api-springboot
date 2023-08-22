@@ -16,12 +16,15 @@ public abstract class BaseService<
         DTO extends BaseDTO,
         RequestDTO extends BaseDTO,
         Mapper extends IBaseMapper<DTO, Entity, RequestDTO>,
-        Repository extends BaseRepository<Entity>
+        Repository extends BaseRepository<Entity>,
+        Specification extends BaseSpecification<Entity>
         > {
 
     protected abstract Mapper getMapper();
 
     protected abstract Repository getRepository();
+
+    protected abstract Specification getSpecification();
 
     @Transactional
     public DTO save(RequestDTO requestDTO) {
@@ -45,11 +48,11 @@ public abstract class BaseService<
                     Sort.by("id").ascending());
         }
 
-        Page<Entity> entityPage = getRepository().findAll(pageable);
+        getSpecification().setCriteriaList(baseFilterRequestDTO.getSearchCriteriaList());
+        Page<Entity> entityPage = getRepository().findAll(getSpecification(),pageable);
         return getMapper().pageEntityToPageDTO(entityPage);
     }
     @Transactional
-
     public DTO update(UUID uuid, RequestDTO requestDTO) {
         Entity entity = getRepository().findByUuid(uuid).orElse(null);
         if (entity != null) {
