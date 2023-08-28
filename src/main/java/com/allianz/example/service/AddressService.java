@@ -6,7 +6,6 @@ import com.allianz.example.database.specification.AddressSpecification;
 import com.allianz.example.mapper.AddressMapper;
 import com.allianz.example.model.AddressDTO;
 import com.allianz.example.model.requestDTO.AddressRequestDTO;
-import com.allianz.example.util.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -6,7 +6,6 @@ import com.allianz.example.database.specification.CategorySpecification;
 import com.allianz.example.mapper.CategoryMapper;
 import com.allianz.example.model.CategoryDTO;
 import com.allianz.example.model.requestDTO.CategoryRequestDTO;
-import com.allianz.example.util.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

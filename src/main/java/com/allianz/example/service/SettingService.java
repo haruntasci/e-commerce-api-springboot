@@ -6,7 +6,6 @@ import com.allianz.example.database.specification.SettingSpecification;
 import com.allianz.example.mapper.SettingMapper;
 import com.allianz.example.model.SettingDTO;
 import com.allianz.example.model.requestDTO.SettingRequestDTO;
-import com.allianz.example.util.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

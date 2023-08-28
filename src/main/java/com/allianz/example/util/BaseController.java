@@ -2,6 +2,7 @@ package com.allianz.example.util;
 
 import com.allianz.example.model.requestDTO.BaseFilterRequestDTO;
 import com.allianz.example.model.requestDTO.PageDTO;
+import com.allianz.example.service.BaseService;
 import com.allianz.example.util.dbutil.BaseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public abstract class BaseController<
     @PostMapping("get-all-filter")
     public ResponseEntity<PageDTO<DTO>> getAll(@RequestBody BaseFilterRequestDTO baseFilterRequestDTO) {
         return new ResponseEntity<>(getService().getAll(baseFilterRequestDTO), HttpStatus.OK);
+//        throw  new NullPointerException();
     }
 
     @PutMapping("{uuid}")
@@ -50,7 +52,7 @@ public abstract class BaseController<
     }
 
     @GetMapping("{uuid}")
-    public ResponseEntity<DTO> getByUUID(@PathVariable UUID uuid) {
+    public ResponseEntity<DTO> getByUUID(@PathVariable UUID uuid) throws Exception {
         DTO dto = getService().getByUUID(uuid);
         if (dto != null) {
             return new ResponseEntity<>(dto, HttpStatus.OK);

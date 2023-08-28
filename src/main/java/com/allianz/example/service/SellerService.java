@@ -6,7 +6,6 @@ import com.allianz.example.database.specification.SellerSpecification;
 import com.allianz.example.mapper.SellerMapper;
 import com.allianz.example.model.SellerDTO;
 import com.allianz.example.model.requestDTO.SellerRequestDTO;
-import com.allianz.example.util.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
+import javax.security.sasl.AuthenticationException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -93,15 +94,18 @@ public class SecurityConfiguration {
                 }).and()
                 .authorizeHttpRequests()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                .requestMatchers(COMMON_WHITELIST).hasAnyRole("customer","seller")
+                .requestMatchers(COMMON_WHITELIST).hasAnyRole("customer", "seller")
                 .requestMatchers(CUSTOMER_WHITELIST).hasAnyRole("customer")
                 .requestMatchers(SELLER_WHITELIST).hasAnyRole("seller")
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()
                 .authenticationEntryPoint(
-                        (request, response, authException) ->
-                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")
+                        (request, response, authException) -> {
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+//                            throw new AuthenticationException("Unauthorized");
+                        }
+
                 )
                 .and()
                 .sessionManagement()

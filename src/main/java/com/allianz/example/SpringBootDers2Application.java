@@ -12,14 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.*;
 
-@SpringBootApplication
+
 @EnableJpaAuditing
-public class SpringBootDers2Application implements CommandLineRunner {
+@EnableAspectJAutoProxy
+@SpringBootApplication
+public class SpringBootDers2Application  {
 
     @Autowired
     ProductEntityRepository productEntityRepository;
@@ -37,28 +40,37 @@ public class SpringBootDers2Application implements CommandLineRunner {
 
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-      //  List<ProductDTO> productDTOS = productService.getAll();
-
-//        ProductEntity product = new ProductEntity();
-//        product.setName("Harun");
-//        product.setCode("AS749218");
-//        product.setCode("RED");
-//        product.setQuantity(23);
-//        product.setBuyPrice(new BigDecimal(150));
-//        product.setSellPrice(new BigDecimal(175));
-//        product.setTax(null);
+//    @Override
+//    public void run(String... args) throws Exception {
 //
-//        CategoryEntity category = new CategoryEntity();
-//        category.setName("Person");
 //
-//        product.getCategoryList().add(category);
-//        productEntityRepository.save(product);
-
-       // productDTOS.stream().forEach(productEntity -> System.out.println(productEntity));
-
-
-    }
+//        Timer timer = new Timer();
+//        TimerTask task = new Helper();
+//
+////        Calendar calendar = Calendar.getInstance();
+////        calendar.set(Calendar.YEAR, 2023);
+////        calendar.set(Calendar.MONTH, Calendar.AUGUST);
+////        calendar.set(Calendar.DAY_OF_MONTH, 22);
+////        calendar.set(Calendar.HOUR_OF_DAY, 23); // Set hour (24-hour format)
+////        calendar.set(Calendar.MINUTE, 0);     // Set minute
+////        calendar.set(Calendar.SECOND, 0);      // Set second
+////
+////        Date specificDateTime = calendar.getTime();
+////        System.out.println(specificDateTime);
+//
+//        timer.schedule(task, 0, 1000);
+//
+//    }
 }
+//class Helper extends TimerTask
+//{
+//    public static int i = 0;
+//    public void run()
+//    {
+//        System.out.println("Timer ran " + ++i);
+//        if(i==10){
+//            cancel();
+//        }
+//    }
+//}
+

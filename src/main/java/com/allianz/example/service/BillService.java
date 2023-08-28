@@ -11,7 +11,6 @@ import com.allianz.example.mapper.OrderMapper;
 import com.allianz.example.model.BillDTO;
 import com.allianz.example.model.OrderDTO;
 import com.allianz.example.model.requestDTO.BillRequestDTO;
-import com.allianz.example.util.BaseService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

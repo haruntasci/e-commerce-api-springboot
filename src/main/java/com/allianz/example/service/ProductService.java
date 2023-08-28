@@ -10,7 +10,6 @@ import com.allianz.example.mapper.ProductMapper;
 import com.allianz.example.model.ProductDTO;
 import com.allianz.example.model.requestDTO.ProductCategoryRequestDTO;
 import com.allianz.example.model.requestDTO.ProductRequestDTO;
-import com.allianz.example.util.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

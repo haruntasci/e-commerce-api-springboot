@@ -1,7 +1,11 @@
-package com.allianz.example.util;
+package com.allianz.example.service;
 
 import com.allianz.example.model.requestDTO.BaseFilterRequestDTO;
 import com.allianz.example.model.requestDTO.PageDTO;
+import com.allianz.example.util.BaseDTO;
+import com.allianz.example.util.BaseRepository;
+import com.allianz.example.util.BaseSpecification;
+import com.allianz.example.util.IBaseMapper;
 import com.allianz.example.util.dbutil.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,21 +41,22 @@ public abstract class BaseService<
         Pageable pageable;
         if (baseFilterRequestDTO.getSortDTO() != null) {
             if (baseFilterRequestDTO.getSortDTO().getDirectionEnum() == Sort.Direction.ASC) {
-                pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(),baseFilterRequestDTO.getPageSize(),
+                pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(), baseFilterRequestDTO.getPageSize(),
                         Sort.by(baseFilterRequestDTO.getSortDTO().getColumnName()).ascending());
             } else {
-                pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(),baseFilterRequestDTO.getPageSize(),
+                pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(), baseFilterRequestDTO.getPageSize(),
                         Sort.by(baseFilterRequestDTO.getSortDTO().getColumnName()).descending());
             }
         } else {
-            pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(),baseFilterRequestDTO.getPageSize(),
+            pageable = PageRequest.of(baseFilterRequestDTO.getPageNumber(), baseFilterRequestDTO.getPageSize(),
                     Sort.by("id").ascending());
         }
 
         getSpecification().setCriteriaList(baseFilterRequestDTO.getSearchCriteriaList());
-        Page<Entity> entityPage = getRepository().findAll(getSpecification(),pageable);
+        Page<Entity> entityPage = getRepository().findAll(getSpecification(), pageable);
         return getMapper().pageEntityToPageDTO(entityPage);
     }
+
     @Transactional
     public DTO update(UUID uuid, RequestDTO requestDTO) {
         Entity entity = getRepository().findByUuid(uuid).orElse(null);
@@ -64,12 +69,13 @@ public abstract class BaseService<
         }
     }
 
-    public DTO getByUUID(UUID uuid) {
+    public DTO getByUUID(UUID uuid) throws Exception {
         Entity entity = getRepository().findByUuid(uuid).orElse(null);
+
         if (entity != null) {
             return getMapper().entityToDTO(entity);
         } else {
-            return null;
+            throw new Exception("Error");
         }
     }
 
